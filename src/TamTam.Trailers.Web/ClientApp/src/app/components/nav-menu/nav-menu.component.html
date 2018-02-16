@@ -1,0 +1,22 @@
+<nav class="navbar navbar-dark navbar-expand-md bg-dark box-shadow">
+    <div class="container d-flex justify-content-between">
+        <a class="navbar-brand" [routerLink]='["/"]'>Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" [attr.aria-expanded]='isExpanded' aria-label="Toggle navigation" (click)='toggle()'>
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" [ngClass]='{ "show": isExpanded }'>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item" [routerLinkActive]='["active"]'>
+            <a class="nav-link" [routerLink]='["/counter"]' (click)='collapse()'>
+              Counter
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/swagger">
+              Docs
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>

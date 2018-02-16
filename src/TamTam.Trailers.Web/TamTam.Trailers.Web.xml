@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TamTam.Trailers.Web</name>
+    </assembly>
+    <members>
+        <member name="M:TamTam.Trailers.Web.Controllers.MoviesController.Search(TamTam.Trailers.Web.Model.Movie.SearchViewModel)">
+            <summary>
+                Searches trailers
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Controllers.MoviesController.Get(System.String)">
+            <summary>
+                Searches trailers
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TamTam.Trailers.Web.Filters.ValidateModelStateAttribute">
+            <inheritdoc />
+            <summary>
+            Validates the action's arguments and model state. If any of the arguments are <c>null</c> or the model state is
+            invalid, returns a 400 Bad Request result.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute" />
+        </member>
+        <member name="M:TamTam.Trailers.Web.Filters.ValidateModelStateAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <inheritdoc />
+            <summary>
+            Called when the action is executing.
+            </summary>
+            <param name="actionContext">The action context.</param>
+        </member>
+        <member name="M:TamTam.Trailers.Web.StartupExtensions.AddOptions(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+                Configures the settings by binding the contents of the appsetings.json file to the specified Plain Old CLR
+                Objects (POCO) and adding <see cref="T:Microsoft.Extensions.Options.IOptions`1" /> objects to the services collection.
+            </summary>
+            <param name="services">The services collection or IoC container.</param>
+            <param name="configuration">
+                Gets or sets the application configuration, where key value pair settings are
+                stored.
+            </param>
+        </member>
+    </members>
+</doc>

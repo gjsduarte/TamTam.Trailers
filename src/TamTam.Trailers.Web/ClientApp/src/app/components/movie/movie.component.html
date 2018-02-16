@@ -1,0 +1,6 @@
+<section class="jumbotron text-center" *ngIf="movie">
+  <div class="container">
+    <h1 class="jumbotron-heading">{{ movie.title }}</h1>
+    <p *ngIf="movie.plot" class="lead text-muted">{{ movie.plot }}</p>
+  </div>
+</section>
