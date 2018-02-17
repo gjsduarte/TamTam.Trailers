@@ -5,6 +5,8 @@
 
     internal static partial class StartupExtensions
     {
+        #region Methods
+
         internal static IApplicationBuilder UseErrorPages(this IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -18,5 +20,7 @@
 
             return app;
         }
+
+        #endregion
     }
 }

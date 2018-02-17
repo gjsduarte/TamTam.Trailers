@@ -11,16 +11,25 @@
             <param name="service">The movie service.</param>
         </member>
         <member name="M:TamTam.Trailers.Web.Controllers.MoviesController.Get(System.String)">
-            <inheritdoc />
+            <summary>
+            Gets a movie with the speficied identifier.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>A movie with teh speficied identifier</returns>
         </member>
         <member name="M:TamTam.Trailers.Web.Controllers.MoviesController.Search(System.String)">
-            <inheritdoc />
+            <summary>
+            Searches movies matching the specified query.
+            </summary>
+            <param name="query">The query.</param>
+            <returns>A collection of movies</returns>
         </member>
         <member name="M:TamTam.Trailers.Web.Controllers.VideosController.Get(System.String)">
             <summary>
-                Searches trailers
+            Gets videos for the specified movie identifier.
             </summary>
-            <returns></returns>
+            <param name="id">The identifier.</param>
+            <returns>A colelction of videos</returns>
         </member>
         <member name="M:TamTam.Trailers.Web.Extensions.HttpClientExtensions.GetAsJson(System.Net.Http.HttpClient,System.String)">
             <summary>
@@ -142,10 +151,10 @@
         </member>
         <member name="M:TamTam.Trailers.Web.Services.Movies.IMovieService.Get(System.String)">
             <summary>
-            Gets a movie.
+            Gets a movie with the speficied identifier.
             </summary>
             <param name="id">The identifier.</param>
-            <returns>A movie with teh speficied identifier</returns>
+            <returns>A movie with the speficied identifier</returns>
         </member>
         <member name="M:TamTam.Trailers.Web.Services.Movies.IMovieService.Search(System.String)">
             <summary>

@@ -1,8 +1,10 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 
-import { MovieService, VideoService } from "../../services";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+
+import { MovieService, VideoService } from "../../services";
+import { TrailerComponent } from "../trailer/trailer.component";
 
 @Component({
   selector: 'app-movie',
@@ -14,9 +16,9 @@ export class MovieComponent implements OnInit {
   public videos: Video[];
 
   constructor(private route: ActivatedRoute,
+              private modalService: NgbModal,
               private movieService: MovieService,
-              private videoService: VideoService,
-              private modalService: NgbModal) {
+              private videoService: VideoService) {
   }
 
   public async ngOnInit() {
@@ -25,7 +27,8 @@ export class MovieComponent implements OnInit {
     this.videos = await this.videoService.get(this.movie.imdbId);
   }
 
-  public open(content) {
-    this.modalService.open(content, { size: "lg" });
+  public openVideo(video: Video) {
+    const modal = this.modalService.open(TrailerComponent, { size: "lg" });
+    modal.componentInstance.video = video;
   }
 }

@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ video.name }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item"
+            [src]="(videoService.getVideoUrl(video) + '?autoplay=1') | safe"
+            frameborder="0" allowfullscreen>
+    </iframe>
+  </div>
+</div>
+<div class="modal-footer">
+  Share:
+  <button shareButton="facebook" [style.color]="share.prop.facebook.color" [sbUrl]="videoService.getVideoUrl(video)">
+    <i [class]="share.prop.facebook.icon"></i>
+  </button>
+  <button shareButton="twitter" [style.color]="share.prop.twitter.color" [sbUrl]="videoService.getVideoUrl(video)">
+    <i [class]="share.prop.twitter.icon"></i>
+  </button>
+  <button shareButton="linkedin" [style.color]="share.prop.linkedin.color" [sbUrl]="videoService.getVideoUrl(video)">
+    <i [class]="share.prop.linkedin.icon"></i>
+  </button>
+  <button shareButton="whatsapp" [style.color]="share.prop.whatsapp.color" [sbUrl]="videoService.getVideoUrl(video)">
+    <i [class]="share.prop.whatsapp.icon"></i>
+  </button>
+  <button shareButton="telegram" [style.color]="share.prop.telegram.color" [sbUrl]="videoService.getVideoUrl(video)">
+    <i [class]="share.prop.telegram.icon"></i>
+  </button>
+  <button shareButton="pinterest" [style.color]="share.prop.pinterest.color" [sbUrl]="videoService.getVideoUrl(video)" [sbImage]="videoService.getImageUrl(video)" [sbDescription]="video.name">
+    <i [class]="share.prop.pinterest.icon"></i>
+  </button>
+</div>

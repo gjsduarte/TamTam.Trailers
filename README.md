@@ -4,6 +4,7 @@
 
  - Angular 5.x
  - dotnet core 2.x
+ - Yarn
 
 ### Features
 
@@ -18,10 +19,10 @@
  - Bootstrap 4 style base
  - SASS styles
  - Webpack/Angular CLI development server
+ - Share the videos directly  
  
 ### TODO
 
- - Add Social Sharing
  - Add Video Service Extension Methods
  - Add deep caching
  - UI Cleanup

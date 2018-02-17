@@ -2,21 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router'
+  ;
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ShareModule } from '@ngx-share/core';
 
 import { AppComponent } from './app.component';
-import { CounterComponent, MovieComponent, NavMenuComponent, SearchComponent  } from './components';
+import { CounterComponent, MovieComponent, NavMenuComponent, SearchComponent, TrailerComponent } from './components';
 import { MovieService, SearchService, VideoService } from "./services";
 import { SafePipe } from "./pipes";
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
     CounterComponent,
     SearchComponent,
     MovieComponent,
+    NavMenuComponent,
+    TrailerComponent,
     SafePipe
   ],
   imports: [
@@ -28,9 +31,11 @@ import { SafePipe } from "./pipes";
       { path: 'movie/:id', component: MovieComponent },
       { path: 'counter', component: CounterComponent }
     ]),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    ShareModule.forRoot()
   ],
-  providers: [MovieService, SearchService, VideoService],
-  bootstrap: [AppComponent]
+  providers: [ MovieService, SearchService, VideoService ],
+  bootstrap: [ AppComponent ],
+  entryComponents: [ TrailerComponent ]
 })
 export class AppModule { }

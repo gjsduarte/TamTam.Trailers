@@ -37,7 +37,7 @@
         #region Public Methods and Operators
 
         /// <summary>
-        /// Gets a movie.
+        /// Gets a movie with the speficied identifier.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>A movie with teh speficied identifier</returns>

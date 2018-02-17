@@ -3,10 +3,13 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Options;
+
     using TamTam.Trailers.Web.Options;
 
     internal static partial class StartupExtensions
     {
+        #region Methods
+
         /// <summary>
         ///     Configures the settings by binding the contents of the appsetings.json file to the specified Plain Old CLR
         ///     Objects (POCO) and adding <see cref="IOptions{TOptions}" /> objects to the services collection.
@@ -24,5 +27,7 @@
 
             return services;
         }
+
+        #endregion
     }
 }
