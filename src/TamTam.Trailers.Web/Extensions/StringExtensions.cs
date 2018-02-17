@@ -6,7 +6,10 @@
     {
         public static string Left(this string value, int maxLength)
         {
-            if (string.IsNullOrEmpty(value)) return value;
+            if (string.IsNullOrEmpty(value))
+            {
+                return value;
+            }
 
             maxLength = Math.Abs(maxLength);
 

@@ -14,33 +14,35 @@
     {
         internal static IServiceCollection AddApiDocs(this IServiceCollection services, ILogger logger)
         {
-            services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("v1", new Info { Title = GetTitle(), Version = $"v1{GetVersion()}" });
-                
-                // integrate xml comments
-                options.IncludeXmlDocumentation(logger);
-            });
-            
+            services.AddSwaggerGen(
+                options =>
+                {
+                    options.SwaggerDoc("v1", new Info { Title = GetTitle(), Version = $"v1{GetVersion()}" });
+
+                    // integrate xml comments
+                    options.IncludeXmlDocumentation(logger);
+                });
+
             return services;
         }
 
         internal static IApplicationBuilder UseApiDocs(this IApplicationBuilder app)
         {
             app.UseSwagger();
-            app.UseSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", $"{GetTitle()} v{GetVersion()}");
-            });
+            app.UseSwaggerUI(
+                options =>
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", $"{GetTitle()} v{GetVersion()}");
+                });
 
             return app;
         }
-        
+
         private static string GetTitle()
         {
             return typeof(StartupExtensions).Namespace;
         }
-        
+
         private static string GetVersion()
         {
             var assembly = Assembly.GetEntryAssembly();
@@ -62,6 +64,7 @@
                     logger.LogWarning(exception, $"XML file {file} contains no valid documentation information.");
                 }
             }
+
             return options;
         }
     }

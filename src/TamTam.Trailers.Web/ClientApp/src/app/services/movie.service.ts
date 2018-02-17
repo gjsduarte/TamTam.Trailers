@@ -21,4 +21,5 @@ export class MovieService {
   public get(id: string): Promise<Movie> {
     return this.http.get<Movie>(`${this.baseUrl}api/Movies/${id}`).toPromise();
   }
+
 }

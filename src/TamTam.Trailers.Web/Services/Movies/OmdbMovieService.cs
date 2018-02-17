@@ -1,4 +1,4 @@
-﻿namespace TamTam.Trailers.Web.Services.Movies.Omdb
+﻿namespace TamTam.Trailers.Web.Services.Movies
 {
     using System.Collections.Generic;
     using System.Text.Encodings.Web;
@@ -6,7 +6,8 @@
     using Microsoft.Extensions.Options;
     using TamTam.Trailers.Web.Extensions;
     using TamTam.Trailers.Web.Factories;
-    using TamTam.Trailers.Web.Services.Movies.Model;
+    using TamTam.Trailers.Web.Model;
+    using TamTam.Trailers.Web.Options;
 
     public class OmdbMovieService : IMovieService
     {
@@ -30,13 +31,14 @@
                 var movie = ParseMovie(result);
                 movies.Add(movie);
             }
+
             return movies;
         }
 
         public async Task<Movie> Get(string id)
         {
             var client = factory.Create();
-            var response = await client.GetAsJson($"{options.Address}?apikey={options.ApiKey}&i={id}");
+            var response = await client.GetAsJson($"{options.Address}?apikey={options.ApiKey}&i={id}&plot=full");
             return ParseMovie(response);
         }
 
@@ -48,7 +50,8 @@
                 Title = result.Title,
                 Year = ParseYear(result.Year.ToString()),
                 Poster = ParsePoster(result.Poster?.ToString()),
-                Plot = result.Plot
+                Plot = result.Plot,
+                ImdbId = result.imdbID
             };
         }
 

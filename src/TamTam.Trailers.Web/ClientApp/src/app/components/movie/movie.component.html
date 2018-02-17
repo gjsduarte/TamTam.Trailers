@@ -1,6 +1,35 @@
-<section class="jumbotron text-center" *ngIf="movie">
+<section class="jumbotron text-light text-center" *ngIf="movie" [style.background-image]="'url(' + movie.backdrop + ')'">
   <div class="container">
-    <h1 class="jumbotron-heading">{{ movie.title }}</h1>
-    <p *ngIf="movie.plot" class="lead text-muted">{{ movie.plot }}</p>
+    <h1 class="jumbotron-heading d-inline-block">{{ movie.title }}</h1>
+    <p *ngIf="movie.plot" class="lead">{{ movie.plot }}</p>
+  </div>
+</section>
+
+<section class="container">
+  <div class="row">
+    <div class="col-4" *ngFor="let video of videos">
+      <ng-template #content let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title">Modal title</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item"
+                    [src]="('https://www.youtube.com/embed/' + video.key + '?autoplay=1') | safe"
+                    frameborder="0" allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </ng-template>
+      <div class="card" (click)="open(content)">
+        <img class="card-img-top" src="http://img.youtube.com/vi/{{ video.key }}/default.jpg" alt="{{ video.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ video.name }}</h5>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

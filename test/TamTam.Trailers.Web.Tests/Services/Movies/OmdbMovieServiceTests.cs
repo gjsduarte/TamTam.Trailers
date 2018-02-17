@@ -1,20 +1,19 @@
-﻿namespace TamTam.Trailers.Web.Services.Movies.Omdb
+﻿namespace TamTam.Trailers.Web.Services.Movies
 {
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Options;
-    using Moq;
     using TamTam.Trailers.Web.Extensions;
+    using TamTam.Trailers.Web.Options;
     using Xunit;
 
     public class OmdbMovieServiceTests : MovieServiceTests
     {
         public OmdbMovieServiceTests()
         {
-            var options = Options.Create(new OmdbOptions
-            {
-                Address = "http://dummy/"
-            });
+            var options = Options.Create(
+                new OmdbOptions
+                    { Address = "http://dummy/" });
             service = new OmdbMovieService(Factory.Object, options);
 
             SetupResponse(

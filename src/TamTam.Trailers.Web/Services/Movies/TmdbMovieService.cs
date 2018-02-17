@@ -1,4 +1,4 @@
-﻿namespace TamTam.Trailers.Web.Services.Movies.Tmdb
+﻿namespace TamTam.Trailers.Web.Services.Movies
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +8,8 @@
     using Microsoft.Extensions.Options;
     using TamTam.Trailers.Web.Extensions;
     using TamTam.Trailers.Web.Factories;
-    using TamTam.Trailers.Web.Services.Movies.Model;
+    using TamTam.Trailers.Web.Model;
+    using TamTam.Trailers.Web.Options;
 
     public class TmdbMovieService : IMovieService
     {
@@ -21,12 +22,20 @@
             this.options = options.Value;
         }
 
-        public async Task<IEnumerable<Movie>> Search(string query)
+        public async Task<Movie> Get(string id)
+        {
+            var client = factory.Create();
+            var uri = $"{options.Address}movie/{id}?api_key={options.ApiKey}";
+            var response = await client.GetAsJson(uri);
+            return ParseMovie(response);
+        }
+
+        async Task<IEnumerable<Movie>> IMovieService.Search(string query)
         {
             var client = factory.Create();
             var encoded = UrlEncoder.Default.Encode(query);
-            var response = await client.GetAsJson(
-                $"{options.Address}search/movie?api_key={options.ApiKey}&query={encoded}");
+            var uri = $"{options.Address}search/movie?api_key={options.ApiKey}&query={encoded}";
+            var response = await client.GetAsJson(uri);
 
             var movies = new List<Movie>();
             foreach (var result in response.results)
@@ -38,31 +47,24 @@
             return movies;
         }
 
-        public async Task<Movie> Get(string id)
-        {
-            var client = factory.Create();
-            var response = await client.GetAsJson(
-                $"{options.Address}movie/{id}?api_key={options.ApiKey}");
-            return ParseMovie(response);
-        }
-
         private static Movie ParseMovie(dynamic result)
         {
-            var movie = new Movie
+            return new Movie
             {
                 Id = result.id,
                 Title = result.title,
                 Rating = result.vote_average,
-                Poster = ParsePoster(result.poster_path?.ToString()),
+                Poster = ParseImage(result.poster_path?.ToString(), 185),
                 Year = ParseYear(result.release_date?.ToString()),
-                Plot = result.overview
+                Plot = result.overview,
+                Backdrop = ParseImage(result.backdrop_path?.ToString(), 1920),
+                ImdbId = result.imdb_id
             };
-            return movie;
         }
 
-        private static string ParsePoster(string str)
+        private static string ParseImage(string str, int width)
         {
-            return string.IsNullOrWhiteSpace(str) ? null : $"http://image.tmdb.org/t/p/w185{str}";
+            return string.IsNullOrWhiteSpace(str) ? null : $"http://image.tmdb.org/t/p/w{width}{str}";
         }
 
         private static int? ParseYear(string str)

@@ -4,7 +4,7 @@
         <name>TamTam.Trailers.Web</name>
     </assembly>
     <members>
-        <member name="M:TamTam.Trailers.Web.Controllers.MoviesController.Search(TamTam.Trailers.Web.Model.Movie.SearchViewModel)">
+        <member name="M:TamTam.Trailers.Web.Controllers.MoviesController.Search(System.String)">
             <summary>
                 Searches trailers
             </summary>
@@ -16,18 +16,24 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:TamTam.Trailers.Web.Controllers.VideosController.Get(System.String)">
+            <summary>
+                Searches trailers
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:TamTam.Trailers.Web.Filters.ValidateModelStateAttribute">
             <inheritdoc />
             <summary>
-            Validates the action's arguments and model state. If any of the arguments are <c>null</c> or the model state is
-            invalid, returns a 400 Bad Request result.
+                Validates the action's arguments and model state. If any of the arguments are <c>null</c> or the model state is
+                invalid, returns a 400 Bad Request result.
             </summary>
             <seealso cref="T:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute" />
         </member>
         <member name="M:TamTam.Trailers.Web.Filters.ValidateModelStateAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
             <inheritdoc />
             <summary>
-            Called when the action is executing.
+                Called when the action is executing.
             </summary>
             <param name="actionContext">The action context.</param>
         </member>

@@ -5,4 +5,6 @@
   title: string;
   year?: number;
   plot?: string;
+  backdrop?: string;
+  imdbId: string;
 }

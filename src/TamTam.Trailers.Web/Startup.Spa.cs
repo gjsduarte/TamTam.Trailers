@@ -10,28 +10,30 @@
         internal static IServiceCollection AddSpa(this IServiceCollection services)
         {
             // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/dist";
-            });
-            
+            services.AddSpaStaticFiles(
+                configuration =>
+                {
+                    configuration.RootPath = "ClientApp/dist";
+                });
+
             return services;
         }
 
 
         internal static IApplicationBuilder UseSpa(this IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseSpa(spa =>
-            {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-                spa.Options.SourcePath = "ClientApp";
-
-                if (env.IsDevelopment())
+            app.UseSpa(
+                spa =>
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
-            });
+                    // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                    // see https://go.microsoft.com/fwlink/?linkid=864501
+                    spa.Options.SourcePath = "ClientApp";
+
+                    if (env.IsDevelopment())
+                    {
+                        spa.UseAngularCliServer("start");
+                    }
+                });
 
             return app;
         }

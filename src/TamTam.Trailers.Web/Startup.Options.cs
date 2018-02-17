@@ -3,8 +3,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Options;
-    using TamTam.Trailers.Web.Services.Movies.Omdb;
-    using TamTam.Trailers.Web.Services.Movies.Tmdb;
+    using TamTam.Trailers.Web.Options;
 
     internal static partial class StartupExtensions
     {
@@ -21,6 +20,7 @@
         {
             services.Configure<OmdbOptions>(configuration.GetSection("Omdb"));
             services.Configure<TmdbOptions>(configuration.GetSection("Tmdb"));
+            services.Configure<YoutubeOptions>(configuration.GetSection("Youtube"));
 
             return services;
         }

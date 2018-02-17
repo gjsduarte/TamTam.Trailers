@@ -19,9 +19,7 @@
             CancellationToken cancellationToken)
         {
             var response = new HttpResponseMessage(HttpStatusCode.OK)
-            {
-                Content = new StringContent(json, Encoding.UTF8, "application/json")
-            };
+                { Content = new StringContent(json, Encoding.UTF8, "application/json") };
             return Task.FromResult(response);
         }
     }

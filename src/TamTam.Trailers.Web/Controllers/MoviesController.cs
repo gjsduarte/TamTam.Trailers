@@ -5,11 +5,12 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using TamTam.Trailers.Web.Filters;
-    using TamTam.Trailers.Web.Model.Movie;
+    using TamTam.Trailers.Web.Model;
     using TamTam.Trailers.Web.Services.Movies;
-    using TamTam.Trailers.Web.Services.Movies.Model;
 
+    [ValidateModelState]
     [Route("api/[controller]")]
+    [ResponseCache(Duration = 60 * 5)]
     public class MoviesController : Controller
     {
         private readonly IMovieService service;
@@ -23,11 +24,10 @@
         ///     Searches trailers
         /// </summary>
         /// <returns></returns>
-        [ValidateModelState]
         [HttpGet("[action]")]
-        public async Task<IEnumerable<Movie>> Search(SearchViewModel model)
+        public async Task<IEnumerable<Movie>> Search(string query)
         {
-            var movies = await service.Search(model.Query);
+            var movies = await service.Search(query);
             return movies.Where(x => !string.IsNullOrWhiteSpace(x.Poster));
         }
 
@@ -35,7 +35,6 @@
         ///     Searches trailers
         /// </summary>
         /// <returns></returns>
-        [ValidateModelState]
         [HttpGet("{id}")]
         public async Task<Movie> Get(string id)
         {

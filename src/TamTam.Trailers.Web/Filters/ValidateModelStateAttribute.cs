@@ -6,8 +6,8 @@
 
     /// <inheritdoc />
     /// <summary>
-    /// Validates the action's arguments and model state. If any of the arguments are <c>null</c> or the model state is
-    /// invalid, returns a 400 Bad Request result.
+    ///     Validates the action's arguments and model state. If any of the arguments are <c>null</c> or the model state is
+    ///     invalid, returns a 400 Bad Request result.
     /// </summary>
     /// <seealso cref="T:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute" />
     public class ValidateModelStateAttribute : ActionFilterAttribute
@@ -21,7 +21,7 @@
 
         /// <inheritdoc />
         /// <summary>
-        /// Called when the action is executing.
+        ///     Called when the action is executing.
         /// </summary>
         /// <param name="actionContext">The action context.</param>
         public override void OnActionExecuting(ActionExecutingContext actionContext)

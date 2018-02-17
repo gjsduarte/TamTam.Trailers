@@ -1,9 +1,9 @@
-﻿namespace TamTam.Trailers.Web.Services.Movies.Tmdb
+﻿namespace TamTam.Trailers.Web.Options
 {
-    public class TmdbOptions
+    public class OmdbOptions
     {
         public string ApiKey { get; set; }
-        
+
         public string Address { get; set; }
     }
 }
