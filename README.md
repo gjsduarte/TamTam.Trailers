@@ -21,7 +21,6 @@
  
 ### TODO
 
- - Add Polly
  - Add Social Sharing
  - Add Video Service Extension Methods
  - Add deep caching

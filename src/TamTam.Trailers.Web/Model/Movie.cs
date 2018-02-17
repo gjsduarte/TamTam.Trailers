@@ -2,20 +2,48 @@
 {
     public class Movie
     {
-        public string Id { get; set; }
+        #region Public Properties
 
-        public double? Rating { get; set; }
-
-        public string Title { get; set; }
-
-        public string Poster { get; set; }
-
-        public int? Year { get; set; }
-
-        public string Plot { get; set; }
-
+        /// <summary>
+        /// Gets or sets the movie backdrop image path.
+        /// </summary>
         public string Backdrop { get; set; }
 
+        /// <summary>
+        /// Gets or sets the movie identifier.
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the movie imdb identifier.
+        /// </summary>
         public string ImdbId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the movie plot.
+        /// </summary>
+        public string Plot { get; set; }
+
+        /// <summary>
+        /// Gets or sets the movie poster image path.
+        /// </summary>
+        public string Poster { get; set; }
+
+        /// <summary>
+        /// Gets or sets the movie imdb rating.
+        /// </summary>
+        public double? Rating { get; set; }
+
+        /// <summary>
+        /// Gets or sets the movie title.
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
+        /// Gets or sets the movie release year.
+        /// </summary>
+        public int? Year { get; set; }
+
+        #endregion
     }
 }

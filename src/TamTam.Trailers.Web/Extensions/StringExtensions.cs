@@ -4,18 +4,24 @@
 
     public static class StringExtensions
     {
-        public static string Left(this string value, int maxLength)
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// Returns the first X characters of a string.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="length">The length.</param>
+        public static string Left(this string value, int length)
         {
-            if (string.IsNullOrEmpty(value))
-            {
-                return value;
-            }
+            if (string.IsNullOrEmpty(value)) return value;
 
-            maxLength = Math.Abs(maxLength);
+            length = Math.Abs(length);
 
-            return value.Length <= maxLength
+            return value.Length <= length
                 ? value
-                : value.Substring(0, maxLength);
+                : value.Substring(0, length);
         }
+
+        #endregion
     }
 }

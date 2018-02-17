@@ -4,23 +4,62 @@
         <name>TamTam.Trailers.Web</name>
     </assembly>
     <members>
-        <member name="M:TamTam.Trailers.Web.Controllers.MoviesController.Search(System.String)">
+        <member name="M:TamTam.Trailers.Web.Controllers.MoviesController.#ctor(TamTam.Trailers.Web.Services.Movies.IMovieService)">
             <summary>
-                Searches trailers
+            Initializes a new instance of the <see cref="T:TamTam.Trailers.Web.Controllers.MoviesController"/> class.
             </summary>
-            <returns></returns>
+            <param name="service">The movie service.</param>
         </member>
         <member name="M:TamTam.Trailers.Web.Controllers.MoviesController.Get(System.String)">
-            <summary>
-                Searches trailers
-            </summary>
-            <returns></returns>
+            <inheritdoc />
+        </member>
+        <member name="M:TamTam.Trailers.Web.Controllers.MoviesController.Search(System.String)">
+            <inheritdoc />
         </member>
         <member name="M:TamTam.Trailers.Web.Controllers.VideosController.Get(System.String)">
             <summary>
                 Searches trailers
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Extensions.HttpClientExtensions.GetAsJson(System.Net.Http.HttpClient,System.String)">
+            <summary>
+            Gets the HttpClient response parsed as json to a dynamic object.
+            </summary>
+            <param name="client">The client.</param>
+            <param name="uri">The URI.</param>
+            <returns>A dynamic object</returns>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Extensions.HttpClientExtensions.GetAsJson``1(System.Net.Http.HttpClient,System.String)">
+            <summary>
+            Gets the HttpClient response parsed as json to the specified type.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="client">The client.</param>
+            <param name="uri">The URI.</param>
+            <returns>An object of the speficied type</returns>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Extensions.StringExtensions.Left(System.String,System.Int32)">
+            <summary>
+            Returns the first X characters of a string.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="length">The length.</param>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Factories.HttpClientFactory.#ctor(Microsoft.Extensions.Logging.ILogger{System.Net.Http.HttpClient})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TamTam.Trailers.Web.Factories.HttpClientFactory"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Factories.HttpClientFactory.Create">
+            <inheritdoc />
+        </member>
+        <member name="M:TamTam.Trailers.Web.Factories.IHttpClientFactory.Create">
+            <summary>
+            Creates a new HttpClient instance.
+            </summary>
+            <returns>a new HttpClient instance.</returns>
         </member>
         <member name="T:TamTam.Trailers.Web.Filters.ValidateModelStateAttribute">
             <inheritdoc />
@@ -36,6 +75,157 @@
                 Called when the action is executing.
             </summary>
             <param name="actionContext">The action context.</param>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Logging.LoggingHandler.#ctor(Microsoft.Extensions.Logging.ILogger{System.Net.Http.HttpClient})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TamTam.Trailers.Web.Logging.LoggingHandler"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Logging.LoggingHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="P:TamTam.Trailers.Web.Model.Movie.Backdrop">
+            <summary>
+            Gets or sets the movie backdrop image path.
+            </summary>
+        </member>
+        <member name="P:TamTam.Trailers.Web.Model.Movie.Id">
+            <summary>
+            Gets or sets the movie identifier.
+            </summary>
+        </member>
+        <member name="P:TamTam.Trailers.Web.Model.Movie.ImdbId">
+            <summary>
+            Gets or sets the movie imdb identifier.
+            </summary>
+        </member>
+        <member name="P:TamTam.Trailers.Web.Model.Movie.Plot">
+            <summary>
+            Gets or sets the movie plot.
+            </summary>
+        </member>
+        <member name="P:TamTam.Trailers.Web.Model.Movie.Poster">
+            <summary>
+            Gets or sets the movie poster image path.
+            </summary>
+        </member>
+        <member name="P:TamTam.Trailers.Web.Model.Movie.Rating">
+            <summary>
+            Gets or sets the movie imdb rating.
+            </summary>
+        </member>
+        <member name="P:TamTam.Trailers.Web.Model.Movie.Title">
+            <summary>
+            Gets or sets the movie title.
+            </summary>
+        </member>
+        <member name="P:TamTam.Trailers.Web.Model.Movie.Year">
+            <summary>
+            Gets or sets the movie release year.
+            </summary>
+        </member>
+        <member name="P:TamTam.Trailers.Web.Model.Video.Key">
+            <summary>
+            Gets or sets the video service key.
+            </summary>
+        </member>
+        <member name="P:TamTam.Trailers.Web.Model.Video.Name">
+            <summary>
+            Gets or sets the video name.
+            </summary>
+        </member>
+        <member name="P:TamTam.Trailers.Web.Model.Video.Type">
+            <summary>
+            Gets or sets the video service type.
+            </summary>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Services.Movies.IMovieService.Get(System.String)">
+            <summary>
+            Gets a movie.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>A movie with teh speficied identifier</returns>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Services.Movies.IMovieService.Search(System.String)">
+            <summary>
+            Searches movies matching the specified query.
+            </summary>
+            <param name="query">The query.</param>
+            <returns>A collection of movies</returns>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Services.Movies.OmdbMovieService.#ctor(TamTam.Trailers.Web.Factories.IHttpClientFactory,Microsoft.Extensions.Options.IOptions{TamTam.Trailers.Web.Options.OmdbOptions})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TamTam.Trailers.Web.Services.Movies.OmdbMovieService"/> class.
+            </summary>
+            <param name="factory">The http client factory.</param>
+            <param name="options">The options.</param>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Services.Movies.OmdbMovieService.Get(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:TamTam.Trailers.Web.Services.Movies.OmdbMovieService.Search(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:TamTam.Trailers.Web.Services.Movies.TmdbMovieService.#ctor(TamTam.Trailers.Web.Factories.IHttpClientFactory,Microsoft.Extensions.Options.IOptions{TamTam.Trailers.Web.Options.TmdbOptions})">
+            <summary>
+                Initializes a new instance of the <see cref="T:TamTam.Trailers.Web.Services.Movies.TmdbMovieService" /> class.
+            </summary>
+            <param name="factory">The http client factory.</param>
+            <param name="options">The options.</param>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Services.Movies.TmdbMovieService.Get(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:TamTam.Trailers.Web.Services.Movies.TmdbMovieService.Search(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:TamTam.Trailers.Web.Services.Policies.Retry">
+            <summary>
+            Retry policy that attempts an operation up to 3 times untul success with incresing wait intervals.
+            </summary>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Services.Videos.IVideoService.Search(System.String)">
+            <summary>
+            Searches videos for the specified movie identifier.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>A colelction of videos</returns>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Services.Videos.TmdbVideoService.#ctor(TamTam.Trailers.Web.Factories.IHttpClientFactory,Microsoft.Extensions.Options.IOptions{TamTam.Trailers.Web.Options.TmdbOptions})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TamTam.Trailers.Web.Services.Videos.TmdbVideoService"/> class.
+            </summary>
+            <param name="factory">The http client factory.</param>
+            <param name="options">The options.</param>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Services.Videos.TmdbVideoService.Search(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:TamTam.Trailers.Web.Services.Videos.YoutubeVideoService.#ctor(TamTam.Trailers.Web.Services.Movies.IMovieService,Microsoft.Extensions.Options.IOptions{TamTam.Trailers.Web.Options.YoutubeOptions})">
+            <summary>
+                Initializes a new instance of the <see cref="T:TamTam.Trailers.Web.Services.Videos.YoutubeVideoService" /> class.
+            </summary>
+            <param name="movieService">The movie service.</param>
+            <param name="options">The options.</param>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Services.Videos.YoutubeVideoService.Search(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:TamTam.Trailers.Web.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Configures the application.
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app">The application.</param>
+            <param name="env">The hosting environment.</param>
+        </member>
+        <member name="M:TamTam.Trailers.Web.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configures the application services.
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services">The services.</param>
         </member>
         <member name="M:TamTam.Trailers.Web.StartupExtensions.AddOptions(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>

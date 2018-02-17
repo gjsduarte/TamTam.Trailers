@@ -2,8 +2,12 @@
 {
     public class OmdbOptions
     {
-        public string ApiKey { get; set; }
+        #region Public Properties
 
         public string Address { get; set; }
+
+        public string ApiKey { get; set; }
+
+        #endregion
     }
 }
