@@ -8,14 +8,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShareModule } from '@ngx-share/core';
 
 import { AppComponent } from './app.component';
-import { CounterComponent, MovieComponent, NavMenuComponent, SearchComponent, TrailerComponent } from './components';
+import { MovieComponent, NavMenuComponent, SearchComponent, TrailerComponent } from './components';
 import { MovieService, SearchService, VideoService } from "./services";
 import { SafePipe } from "./pipes";
 
 @NgModule({
   declarations: [
     AppComponent,
-    CounterComponent,
     SearchComponent,
     MovieComponent,
     NavMenuComponent,
@@ -28,8 +27,7 @@ import { SafePipe } from "./pipes";
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: SearchComponent, pathMatch: 'full' },
-      { path: 'movie/:id', component: MovieComponent },
-      { path: 'counter', component: CounterComponent }
+      { path: 'movie/:id', component: MovieComponent }
     ]),
     NgbModule.forRoot(),
     ShareModule.forRoot()
