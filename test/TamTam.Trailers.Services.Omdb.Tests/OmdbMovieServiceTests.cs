@@ -14,7 +14,7 @@
             var options = Microsoft.Extensions.Options.Options.Create(
                 new OmdbOptions
                     { Address = "http://dummy/" });
-            service = new OmdbMovieService(Factory.Object, options);
+            service = new OmdbMovieService(Factory.Object, Cache.Object, options);
 
             SetupResponse(
                 @"{

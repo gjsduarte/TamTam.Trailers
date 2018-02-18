@@ -13,8 +13,10 @@
         {
             var options = Microsoft.Extensions.Options.Options.Create(
                 new TmdbOptions
-                    { Address = "http://dummy/" });
-            service = new TmdbMovieService(Factory.Object, options);
+                {
+                    Address = "http://dummy/"
+                });
+            service = new TmdbMovieService(Factory.Object, Cache.Object, options);
 
             SetupResponse(
                 @"{

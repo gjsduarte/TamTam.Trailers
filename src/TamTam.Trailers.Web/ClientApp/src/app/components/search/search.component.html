@@ -1,10 +1,10 @@
 <section class="jumbotron text-center">
   <div class="container">
-    <h1 class="jumbotron-heading">Movie Trailers</h1>
+    <h1 class="jumbotron-heading">TamTam Awesome Movie Trailers</h1>
     <p class="lead text-muted">Search your favorite movie trailers</p>
     <div class="form-label-group text-left">
       <input id="search" type="email" [(ngModel)]="service.query" class="form-control" placeholder="Search your favorite movie trailers" autofocus="" (keyup)="query$.next($event.target.value)">
-      <label for="search">Search your favorite movie trailers</label>
+      <label for="search">Search</label>
     </div>
   </div>
 </section>
@@ -12,17 +12,19 @@
 <section class="container">
   <ngb-progressbar *ngIf="loading" [value]="100" [striped]="true" [animated]="true"></ngb-progressbar>
   <div *ngIf="!loading">
-    <div class="card-columns" *ngIf="movies?.length > 0">
-      <a class="card mb-4 box-shadow" *ngFor="let movie of movies" routerLink="/movie/{{ movie.id }}">
-        <img class="card-img-top" [src]="movie.poster" alt="{{ movie.title }}">
-        <div class="card-body">
-          <h4 class="card-text">{{ movie.title }}</h4>
-          <div class="d-flex justify-content-between align-items-center" *ngIf="movie.rating">
-            <small class="text-muted">{{ movie.year }}</small>
-            <ngb-rating [(rate)]="movie.rating" readonly="true"></ngb-rating>
+    <div class="row" *ngIf="movies?.length > 0">
+      <div class="col-md-4 col-lg-3" *ngFor="let movie of movies">
+        <div class="card mb-4 box-shadow c-pointer" routerLink="/movie/{{ movie.id }}">
+          <img class="card-img-top" [src]="movie.poster" alt="{{ movie.title }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ movie.title }}</h5>
+            <div class="d-flex justify-content-between align-items-center" *ngIf="movie.rating">
+              <small class="text-muted">{{ movie.year }}</small>
+              <ngb-rating [(rate)]="movie.rating" readonly="true"></ngb-rating>
+            </div>
           </div>
         </div>
-      </a>
+      </div>
     </div>
     <div class="text-center" *ngIf="movies?.length === 0">
       <p>No movies found... :(</p>

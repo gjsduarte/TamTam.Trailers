@@ -8,14 +8,10 @@
 
     public static class EnumerableExtensions
     {
-        public static Task<T[]> ToArray<T>(this Task<IEnumerable<T>> source,
-            CancellationToken token = default(CancellationToken))
-        {
-            return ExecuteAsync(source, x => x.ToArray(), token);
-        }
-        
-        public static IEnumerable<TSource> DistinctBy<TSource, TKey>
-            (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+        #region Public Methods and Operators
+
+        public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source,
+            Func<TSource, TKey> keySelector)
         {
             var seenKeys = new HashSet<TKey>();
             foreach (var element in source)
@@ -27,6 +23,20 @@
             }
         }
 
+        public static Task<T[]> ToArray<T>(this Task<IEnumerable<T>> source,
+            CancellationToken token = default(CancellationToken))
+        {
+            return ExecuteAsync(source, x => x?.ToArray(), token);
+        }
+
+        public static Task<List<T>> ToList<T>(this Task<IEnumerable<T>> source,
+            CancellationToken token = default(CancellationToken))
+        {
+            return ExecuteAsync(source, x => x?.ToList(), token);
+        }
+
+        #endregion
+
         #region Methods
 
         private static async Task<TResult> ExecuteAsync<T, TResult>(Task<IEnumerable<T>> source,
@@ -34,7 +44,7 @@
             CancellationToken token = default(CancellationToken))
         {
             token.ThrowIfCancellationRequested();
-            var result = await source;
+            var result = await source.ConfigureAwait(false);
             return projection(result);
         }
 

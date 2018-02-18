@@ -1,4 +1,4 @@
-<section class="jumbotron text-light text-center" *ngIf="movie" [style.background-image]="'url(' + movie.backdrop + ')'">
+<section class="jumbotron jumbotron-fluid text-light text-center" *ngIf="movie" [style.background-image]="'url(' + movie.backdrop + ')'">
   <div class="container">
     <h1 class="jumbotron-heading d-inline-block">{{ movie.title }}</h1>
     <p *ngIf="movie.plot" class="lead">{{ movie.plot }}</p>
@@ -7,8 +7,8 @@
 
 <section class="container">
   <div class="row">
-    <div class="col-4" *ngFor="let video of videos">
-      <div class="card" (click)="openVideo(video)">
+    <div class="col-md-4 col-lg-3" *ngFor="let video of videos">
+      <div class="card mb-4 c-pointer" (click)="openVideo(video)">
         <img class="card-img-top" [src]="videoService.getImageUrl(video)" alt="{{ video.name }}">
         <div class="card-body">
           <h5 class="card-title">{{ video.name }}</h5>

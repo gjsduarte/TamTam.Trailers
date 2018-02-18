@@ -5,7 +5,10 @@
     using System.Globalization;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
+    
+    using Microsoft.Extensions.Caching.Distributed;
     using Microsoft.Extensions.Options;
+    
     using TamTam.Trailers.Infrastructure;
     using TamTam.Trailers.Infrastructure.Extensions;
     using TamTam.Trailers.Infrastructure.Factories;
@@ -18,7 +21,9 @@
         #region Fields
 
         private readonly IHttpClientFactory factory;
+        private readonly IDistributedCache cache;
         private readonly TmdbOptions options;
+        private readonly DistributedCacheEntryOptions cacheOptions;
 
         #endregion
 
@@ -28,11 +33,18 @@
         ///     Initializes a new instance of the <see cref="TmdbMovieService" /> class.
         /// </summary>
         /// <param name="factory">The http client factory.</param>
+        /// <param name="cache">The current cache store.</param>
         /// <param name="options">The options.</param>
-        public TmdbMovieService(IHttpClientFactory factory, IOptions<TmdbOptions> options)
+        public TmdbMovieService(IHttpClientFactory factory, IDistributedCache cache, IOptions<TmdbOptions> options)
         {
             this.factory = factory;
+            this.cache = cache;
             this.options = options.Value;
+            // TODO: Read this from options
+            cacheOptions = new DistributedCacheEntryOptions
+            {
+                SlidingExpiration = TimeSpan.FromMinutes(5d)
+            };
         }
 
         #endregion
@@ -44,12 +56,22 @@
         {
             var uri = $"{options.Address}movie/{id}?api_key={options.ApiKey}";
 
-            // Fetch the movie
-            var client = factory.Create();
-            var response = await Policies.Retry.ExecuteAsync(() => client.GetAsJson(uri));
+            // Try getting the result from the cache
+            var movie = await cache.GetAsJsonAsync<Movie>(uri);
+            if (movie == null)
+            {
+                // Fetch the movie from the API
+                var client = factory.Create();
+                var response = await Policies.Retry.ExecuteAsync(() => client.GetAsJson(uri));
+                
+                // Parse the movie
+                movie = ParseMovie(response);
+                
+                // Store the value in the cache
+                await cache.SetAsJsonAsync(uri, movie, cacheOptions);
+            }
 
-            // Parse the movie
-            return ParseMovie(response);
+            return movie;
         }
 
         /// <inheritdoc />
@@ -59,18 +81,26 @@
             var encoded = UrlEncoder.Default.Encode(query);
             var uri = $"{options.Address}search/movie?api_key={options.ApiKey}&query={encoded}";
 
-            // Fetch the results
-            var client = factory.Create();
-            var response = await Policies.Retry.ExecuteAsync(() => client.GetAsJson(uri));
-
-            // Parse the results
-            var movies = new List<Movie>();
-            foreach (var result in response.results)
+            // Try getting the result from the cache
+            var movies = await cache.GetAsJsonAsync<IEnumerable<Movie>>(uri).ToList();
+            if (movies == null)
             {
-                var movie = ParseMovie(result);
-                movies.Add(movie);
-            }
+                // Fetch the results
+                var client = factory.Create();
+                var response = await Policies.Retry.ExecuteAsync(() => client.GetAsJson(uri));
 
+                // Parse the results
+                movies = new List<Movie>();
+                foreach (var result in response.results)
+                {
+                    Movie movie = ParseMovie(result);
+                    movies.Add(movie);
+                }
+                
+                // Store the values in the cache
+                await cache.SetAsJsonAsync(uri, movies, cacheOptions);
+            }
+            
             return movies;
         }
 

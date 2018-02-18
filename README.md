@@ -10,21 +10,21 @@
 
  - TheMovieDatabase movie search
  - TheMovieDatabase trailer search
- - Youtube trailer "smart" search
+ - Youtube trailer "mega intelligent" search :P
  - API documentation with OpenAPI/Swagger
  - API explorer with SwaggerUI
  - Polly for dependency request failure handling
  - Request caching for better performance
+ - Distributed service-level caching for even better performance
+ - Super smart Video de-duplication!
  - Angular UI frontend
  - Bootstrap 4 style base
  - SASS styles
  - Webpack/Angular CLI development server
- - Share the videos directly  
+ - Social video sharing!
  
 ### TODO
 
- - Add Video Service Extension Methods
- - Add deep caching
- - UI Cleanup
  - More Unit Tests
  - More frontend tests 
+ - Implement paging

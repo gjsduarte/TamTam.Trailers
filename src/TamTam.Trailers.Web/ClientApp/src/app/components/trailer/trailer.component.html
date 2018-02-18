@@ -13,23 +13,23 @@
   </div>
 </div>
 <div class="modal-footer">
-  Share:
-  <button shareButton="facebook" [style.color]="share.prop.facebook.color" [sbUrl]="videoService.getVideoUrl(video)">
+  <span class="mr-1">Share:</span>
+  <button class="btn btn-light" shareButton="facebook" [style.color]="share.prop.facebook.color" [sbUrl]="videoService.getVideoUrl(video)">
     <i [class]="share.prop.facebook.icon"></i>
   </button>
-  <button shareButton="twitter" [style.color]="share.prop.twitter.color" [sbUrl]="videoService.getVideoUrl(video)">
+  <button class="btn btn-light" shareButton="twitter" [style.color]="share.prop.twitter.color" [sbUrl]="videoService.getVideoUrl(video)">
     <i [class]="share.prop.twitter.icon"></i>
   </button>
-  <button shareButton="linkedin" [style.color]="share.prop.linkedin.color" [sbUrl]="videoService.getVideoUrl(video)">
+  <button class="btn btn-light" shareButton="linkedin" [style.color]="share.prop.linkedin.color" [sbUrl]="videoService.getVideoUrl(video)">
     <i [class]="share.prop.linkedin.icon"></i>
   </button>
-  <button shareButton="whatsapp" [style.color]="share.prop.whatsapp.color" [sbUrl]="videoService.getVideoUrl(video)">
+  <button class="btn btn-light" shareButton="whatsapp" [style.color]="share.prop.whatsapp.color" [sbUrl]="videoService.getVideoUrl(video)">
     <i [class]="share.prop.whatsapp.icon"></i>
   </button>
-  <button shareButton="telegram" [style.color]="share.prop.telegram.color" [sbUrl]="videoService.getVideoUrl(video)">
+  <button class="btn btn-light" shareButton="telegram" [style.color]="share.prop.telegram.color" [sbUrl]="videoService.getVideoUrl(video)">
     <i [class]="share.prop.telegram.icon"></i>
   </button>
-  <button shareButton="pinterest" [style.color]="share.prop.pinterest.color" [sbUrl]="videoService.getVideoUrl(video)" [sbImage]="videoService.getImageUrl(video)" [sbDescription]="video.name">
+  <button class="btn btn-light" shareButton="pinterest" [style.color]="share.prop.pinterest.color" [sbUrl]="videoService.getVideoUrl(video)" [sbImage]="videoService.getImageUrl(video)" [sbDescription]="video.name">
     <i [class]="share.prop.pinterest.icon"></i>
   </button>
 </div>

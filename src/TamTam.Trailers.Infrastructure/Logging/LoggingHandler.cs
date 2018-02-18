@@ -16,8 +16,9 @@
 
         #region Constructors and Destructors
 
+        /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the <see cref="LoggingHandler"/> class.
+        /// Initializes a new instance of the <see cref="T:TamTam.Trailers.Infrastructure.Logging.LoggingHandler" /> class.
         /// </summary>
         /// <param name="logger">The logger.</param>
         public LoggingHandler(ILogger<HttpClient> logger)
@@ -30,13 +31,13 @@
         #region Methods
 
         /// <inheritdoc />
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
             CancellationToken cancellationToken)
         {
             try
             {
                 logger.LogInformation($"Executing request {request}");
-                return base.SendAsync(request, cancellationToken);
+                return await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception exception)
             {
