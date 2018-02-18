@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <IsPackable>false</IsPackable>
-    <RootNamespace>TamTam.Trailers.Web</RootNamespace>
+    <RootNamespace>TamTam.Trailers.Services.Omdb</RootNamespace>
     <RuntimeFrameworkVersion>2.0.3</RuntimeFrameworkVersion>
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
@@ -13,6 +13,7 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\TamTam.Trailers.Web\TamTam.Trailers.Web.csproj" />
+    <ProjectReference Include="..\..\src\TamTam.Trailers.Services.Omdb\TamTam.Trailers.Services.Omdb.csproj" />
+    <ProjectReference Include="..\..\test\TamTam.Trailers.Infrastructure.Tests\TamTam.Trailers.Infrastructure.Tests.csproj" />
   </ItemGroup>
 </Project>

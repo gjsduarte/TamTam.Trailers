@@ -23,9 +23,9 @@ namespace TamTam.Trailers.Web
 
         #region Public Properties
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
-        public ILogger<Startup> Logger { get; }
+        private ILogger<Startup> Logger { get; }
 
         #endregion
 
@@ -57,8 +57,7 @@ namespace TamTam.Trailers.Web
             services.AddMvc();
             services.AddApiDocs(Logger);
             services.AddSpa();
-            services.AddCustomServices();
-            services.AddOptions(Configuration);
+            services.AddServices(Configuration);
         }
 
         #endregion

@@ -5,10 +5,9 @@
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
-
-    using TamTam.Trailers.Web.Filters;
-    using TamTam.Trailers.Web.Model;
-    using TamTam.Trailers.Web.Services.Movies;
+    using TamTam.Trailers.Infrastructure.Filters;
+    using TamTam.Trailers.Infrastructure.Model;
+    using TamTam.Trailers.Infrastructure.Services;
 
     [ValidateModelState]
     [Route("api/[controller]")]
